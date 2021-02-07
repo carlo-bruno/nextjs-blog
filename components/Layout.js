@@ -1,10 +1,14 @@
-import styles from '../styles/Layout.module.css';
+import Nav from './Nav';
+import layoutStyles from '../styles/Layout.module.scss';
 
 const Layout = ({ children }) => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>{children}</main>
-    </div>
+    <>
+      <Nav />
+      <div className={layoutStyles.container}>
+        <main className={layoutStyles.main}>{children}</main>
+      </div>
+    </>
   );
 };
 

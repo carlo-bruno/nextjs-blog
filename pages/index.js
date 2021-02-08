@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { ArticleList } from '../components/ArticleList';
 
 export const getStaticProps = async () => {
   const res = await fetch(
@@ -14,11 +15,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ articles }) {
-  console.log(articles);
-  const titleList = articles.map((article) => {
-    return <h3 key={article.id}>{article.title}</h3>;
-  });
-
   return (
     <div>
       <Head>
@@ -28,7 +24,7 @@ export default function Home({ articles }) {
           content='web development, programming'
         />
       </Head>
-      {titleList}
+      <ArticleList articles={articles} />
     </div>
   );
 }

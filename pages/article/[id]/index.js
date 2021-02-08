@@ -1,15 +1,17 @@
 import { server } from '../../../config';
 import Link from 'next/link';
+import Meta from '../../../components/Meta';
 import { useRouter } from 'next/router';
 
 const article = ({ article }) => {
   // const router = useRouter();
   // const { id } = router.query;
 
-  const { id, title, body } = article;
+  const { id, title, body, excerpt } = article;
 
   return (
     <>
+      <Meta title={`Next.js Blog | ${title}`} description={excerpt} />
       <h1>{title}</h1>
       <p>{body}</p>
       <br />

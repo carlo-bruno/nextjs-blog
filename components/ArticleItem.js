@@ -2,7 +2,7 @@ import Link from 'next/link';
 import articleStyles from '../styles/Article.module.scss';
 
 export const ArticleItem = ({ article }) => {
-  console.log(article);
+  console.log('ArticleItem', article);
   const { id, title, body } = article;
   return (
     <Link href='/article/[id]' as={`article/${id}`}>

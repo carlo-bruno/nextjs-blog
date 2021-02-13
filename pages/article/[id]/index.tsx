@@ -2,6 +2,7 @@ import { server } from '../../../config';
 import Link from 'next/link';
 import Meta from '../../../components/Meta';
 import { useRouter } from 'next/router';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 const article = ({ article }) => {
   // const router = useRouter();
@@ -21,7 +22,7 @@ const article = ({ article }) => {
 };
 
 // mock api fetch
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch(
     `${server}/api/articles/${context.params.id}`
   );
@@ -34,14 +35,12 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${server}/api/articles`);
   const articles = await res.json();
 
   const ids = articles.map((article) => article.id);
   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-
-  console.log('paths', paths);
 
   return {
     paths,
@@ -49,7 +48,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-// export const getStaticProps = async (context) => {
+// export const getStaticProps: GetStaticProps = async (context) => {
 //   const res = await fetch(
 //     `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
 //   );
@@ -62,7 +61,7 @@ export const getStaticPaths = async () => {
 //   };
 // };
 
-// export const getStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
 //   const res = await fetch(
 //     `https://jsonplaceholder.typicode.com/posts`
 //   );
@@ -70,8 +69,6 @@ export const getStaticPaths = async () => {
 
 //   const ids = articles.map((article) => article.id);
 //   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-
-//   console.log('paths', paths);
 
 //   return {
 //     paths,
